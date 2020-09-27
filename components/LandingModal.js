@@ -54,9 +54,9 @@ const LandingModal = () => {
                   maxW="350px"
                   textAlign="center"
                 >
-                  <Heading size="sm">
-                    We are community dedicated to improving the cycling
-                    experience in Munich.
+                  <Heading size="sm" lineHeight="taller">
+                    A community dedicated to improving the cycling and
+                    scootering experience in Munich.
                   </Heading>
                 </Flex>
               </Flex>
@@ -85,6 +85,19 @@ const LandingModal = () => {
                 backgroundColor="gray.400"
                 color="white"
                 fontWeight="medium"
+                _hover={{ bg: 'gray.300' }}
+                _active={{
+                  bg: 'gray.400',
+                  transform: 'scale(0.95)'
+                }}
+              >
+                Show me the owls!
+              </Button>
+              <Button
+                mr={3}
+                backgroundColor="gray.400"
+                color="white"
+                fontWeight="medium"
                 _hover={{ bg: 'gray.200' }}
                 _active={{
                   bg: 'gray.300',
@@ -96,12 +109,12 @@ const LandingModal = () => {
 
               <Button
                 mr={3}
-                backgroundColor="gray.400"
+                backgroundColor="red.300"
                 color="white"
                 fontWeight="medium"
-                _hover={{ bg: 'gray.300' }}
+                _hover={{ bg: 'red.200' }}
                 _active={{
-                  bg: 'gray.400',
+                  bg: 'red.400',
                   transform: 'scale(0.95)'
                 }}
               >

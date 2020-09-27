@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import mapStyles from '../styles/mapStyles';
 import { Spinner } from '@chakra-ui/core';
 
-import { AlertWindow, ErrorModal, LandingModal } from '.';
+import { AlertWindow, LandingModal } from '.';
 
 const libraries = ['places'];
 const mapContainerStyle = {

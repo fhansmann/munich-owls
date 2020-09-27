@@ -23,6 +23,7 @@
     "react": "16.13.1",
     "react-delay-render": "^0.1.2",
     "react-dom": "16.13.1",
+    "react-hook-form": "^6.8.6",
     "react-query": "^2.23.0",
     "use-places-autocomplete": "^1.5.0"
   },
