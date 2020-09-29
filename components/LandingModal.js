@@ -1,4 +1,5 @@
-import { useRef, useState } from 'react';
+import Link from 'next/link';
+import { useState } from 'react';
 import ReactDelayRender from 'react-delay-render';
 import {
   Modal,
@@ -54,8 +55,8 @@ const LandingModal = () => {
                   maxW="350px"
                   textAlign="center"
                 >
-                  <Heading size="sm" lineHeight="taller">
-                    A community dedicated to improving the cycling and
+                  <Heading size="sm" lineHeight="1.4" minW="380px">
+                    A vibrant community dedicated to improve the cycling and
                     scootering experience in Munich.
                   </Heading>
                 </Flex>
@@ -64,11 +65,11 @@ const LandingModal = () => {
                 <List spacing={3}>
                   <ListItem>
                     <ListIcon icon="check-circle" color="green.500" />
-                    Mark dangerous potholes and help make cycling paths safer
+                    Mark dangerous potholes and other obstacles
                   </ListItem>
                   <ListItem>
                     <ListIcon icon="check-circle" color="green.500" />
-                    See what others have marked and avoid dangerous paths
+                    See what others have marked and avoid dangerous routes
                   </ListItem>
                   <ListItem>
                     <ListIcon icon="check-circle" color="green.500" />
@@ -80,46 +81,53 @@ const LandingModal = () => {
             </ModalBody>
 
             <ModalFooter>
-              <Button
-                mr={3}
-                backgroundColor="gray.400"
-                color="white"
-                fontWeight="medium"
-                _hover={{ bg: 'gray.300' }}
-                _active={{
-                  bg: 'gray.400',
-                  transform: 'scale(0.95)'
-                }}
-              >
-                Show me the owls!
-              </Button>
-              <Button
-                mr={3}
-                backgroundColor="gray.400"
-                color="white"
-                fontWeight="medium"
-                _hover={{ bg: 'gray.200' }}
-                _active={{
-                  bg: 'gray.300',
-                  transform: 'scale(0.95)'
-                }}
-              >
-                Learn more
-              </Button>
+              <Link href="/" passHref>
+                <Button
+                  mr={3}
+                  backgroundColor="gray.400"
+                  color="white"
+                  fontWeight="medium"
+                  _hover={{ bg: 'gray.300' }}
+                  _active={{
+                    bg: 'gray.400',
+                    transform: 'scale(0.95)'
+                  }}
+                >
+                  Show me the owls!
+                </Button>
+              </Link>
 
-              <Button
-                mr={3}
-                backgroundColor="red.300"
-                color="white"
-                fontWeight="medium"
-                _hover={{ bg: 'red.200' }}
-                _active={{
-                  bg: 'red.400',
-                  transform: 'scale(0.95)'
-                }}
-              >
-                Sign in
-              </Button>
+              <Link href="/about" passHref>
+                <Button
+                  mr={3}
+                  backgroundColor="gray.400"
+                  color="white"
+                  fontWeight="medium"
+                  _hover={{ bg: 'gray.200' }}
+                  _active={{
+                    bg: 'gray.300',
+                    transform: 'scale(0.95)'
+                  }}
+                >
+                  Learn more
+                </Button>
+              </Link>
+
+              <Link href="/signin" passHref>
+                <Button
+                  mr={3}
+                  backgroundColor="red.300"
+                  color="white"
+                  fontWeight="medium"
+                  _hover={{ bg: 'red.200' }}
+                  _active={{
+                    bg: 'red.400',
+                    transform: 'scale(0.95)'
+                  }}
+                >
+                  Sign in
+                </Button>
+              </Link>
             </ModalFooter>
           </ModalContent>
         </Modal>

@@ -1,11 +1,13 @@
 import { useState, useRef, useCallback } from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import { useQuery, useMutation, queryCache } from 'react-query';
-import Head from 'next/head';
+import { Spinner, Flex } from '@chakra-ui/core';
 
 import mapStyles from '../styles/mapStyles';
 
 import { AlertWindow } from '.';
+import Locate from './Locate';
+import Search from './Search';
 
 const libraries = ['places'];
 const mapContainerStyle = {
@@ -92,52 +94,68 @@ export default function MapActive() {
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
   }, []);
+
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(14);
+    mapRef.current.setZoom(16);
   }, []);
-
-  if (loadError) return 'Error';
-  if (!isLoaded) return 'Loading map...';
 
   return (
     <>
-      <Head>
-        <title>Munich Owls</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
+      {loadError ? null : !isLoaded ? (
+        <Spinner
+          thickness="6px"
+          speed="0.4s"
+          emptyColor="gray.200"
+          color="red.400"
+          size="xl"
+          margin="150px auto 0"
+        />
+      ) : (
+        <Flex flexDirection="column" justifyContent="center">
+          <Flex justifyContent="center">
+            <Search panTo={panTo} />
+            <Locate panTo={panTo} />
+          </Flex>
 
-      <Locate panTo={panTo} />
-      <Search panTo={panTo} />
+          <Flex justifyContent="center">
+            <GoogleMap
+              id="map"
+              mapContainerStyle={mapContainerStyle}
+              zoom={zoom}
+              center={center}
+              options={options}
+              onClick={onMapClick}
+              onLoad={onMapLoad}
+            >
+              {Array.isArray(sightings) &&
+                sightings.map((sighting) => (
+                  <Marker
+                    key={sighting.id}
+                    position={{
+                      lat: sighting.latitude,
+                      lng: sighting.longitude
+                    }}
+                    onClick={() => setSelected(sighting)}
+                    icon={{
+                      url: `/owl.svg`,
+                      origin: new window.google.maps.Point(0, 0),
+                      anchor: new window.google.maps.Point(15, 15),
+                      scaledSize: new window.google.maps.Size(30, 30)
+                    }}
+                  />
+                ))}
 
-      <GoogleMap
-        id="map"
-        mapContainerStyle={mapContainerStyle}
-        zoom={zoom}
-        center={center}
-        options={options}
-        onClick={onMapClick}
-        onLoad={onMapLoad}
-      >
-        {Array.isArray(sightings) &&
-          sightings.map((sighting) => (
-            <Marker
-              key={sighting.id}
-              position={{ lat: sighting.latitude, lng: sighting.longitude }}
-              onClick={() => setSelected(sighting)}
-              icon={{
-                url: `/owl.svg`,
-                origin: new window.google.maps.Point(0, 0),
-                anchor: new window.google.maps.Point(15, 15),
-                scaledSize: new window.google.maps.Size(30, 30)
-              }}
-            />
-          ))}
-
-        {selected && (
-          <AlertWindow selected={selected} close={() => setSelected(null)} />
-        )}
-      </GoogleMap>
+              {selected && (
+                <AlertWindow
+                  selected={selected}
+                  close={() => setSelected(null)}
+                />
+              )}
+            </GoogleMap>
+          </Flex>
+        </Flex>
+      )}
     </>
   );
 }

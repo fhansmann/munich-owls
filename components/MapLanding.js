@@ -8,7 +8,7 @@ import { AlertWindow, LandingModal } from '.';
 
 const libraries = ['places'];
 const mapContainerStyle = {
-  height: '90vh',
+  height: '100vh',
   width: '100vw'
 };
 const options = {
@@ -38,18 +38,9 @@ export default function MapLanding() {
 
   const { data: sightings } = useQuery('sightings', fetchSightingsRequest);
 
-  const onMapClick = () => (
-    {
-      // Redirect to Sign-in
-    },
-    []
-  );
-
   return (
     <>
-      {loadError ? (
-        <ErrorModal />
-      ) : !isLoaded ? (
+      {loadError ? null : !isLoaded ? (
         <Spinner
           thickness="6px"
           speed="0.4s"
@@ -66,7 +57,6 @@ export default function MapLanding() {
             zoom={zoom}
             center={center}
             options={options}
-            onClick={onMapClick}
           >
             {Array.isArray(sightings) &&
               sightings.map((sighting) => (
