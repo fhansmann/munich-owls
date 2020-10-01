@@ -1,4 +1,5 @@
 export { default as Locate } from './Locate';
+export { default as LocateMobile } from './LocateMobile';
 export { default as AlertWindow } from './AlertWindow';
 export { default as Search } from './Search';
 export { default as MapLanding } from './MapLanding';

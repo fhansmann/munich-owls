@@ -1,10 +1,10 @@
 .search {
   position: absolute;
-  top: 16px;
+  top: 11px;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 210px;
+  max-width: 240px;
   z-index: 10;
 }
 
@@ -19,13 +19,26 @@
 
 .locate {
   position: absolute;
-  left: 80%;
-  top: 18px;
+  right: 15px;
+  top: 65px;
+  background: none;
+  border: none;
+  z-index: 10;
+}
+
+.locateMobile {
+  position: absolute;
+  right: 15px;
+  top: 11px;
   background: none;
   border: none;
   z-index: 10;
 }
 .locate img {
   width: 30px;
+  cursor: pointer;
+}
+.locateMobile img {
+  width: 32px;
   cursor: pointer;
 }

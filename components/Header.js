@@ -1,25 +1,16 @@
-import { Image, Box, Link, Heading, Button } from '@chakra-ui/core';
+import { Image, Link, Heading, Button, Flex } from '@chakra-ui/core';
 
 const Header = ({ children }) => {
   return (
-    <>
-      <Box pos="absolute" top="8px" left="10px" zIndex={10}>
+    <Flex justifyContent="space-between" alignItems="center">
+      <Flex justifyContent="space-between" alignItems="center">
         <Image height="55px" width="55px" src="owl.png" />
-      </Box>
-
-      <Heading
-        as="h1"
-        size="lg"
-        pos="absolute"
-        top="20px"
-        left="56px"
-        zIndex={10}
-      >
-        {' '}
-        OWLS{' '}
-      </Heading>
-
-      <Box pos="absolute" top="5" right="5" zIndex={15}>
+        <Heading as="h1" size="lg">
+          {' '}
+          OWLS{' '}
+        </Heading>
+      </Flex>
+      <Flex>
         <Link href="/signin" style={{ textDecoration: 'none' }} passHref>
           <Button
             size="sm"
@@ -52,8 +43,8 @@ const Header = ({ children }) => {
             About
           </Button>
         </Link>
-      </Box>
-    </>
+      </Flex>
+    </Flex>
   );
 };
 

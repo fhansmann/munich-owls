@@ -3,9 +3,10 @@ import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import { useQuery, useMutation, queryCache } from 'react-query';
 import { Spinner, Flex, Box } from '@chakra-ui/core';
 
+import useDeviceDetect from '../utils/useDeviceDetect';
 import mapStyles from '../styles/mapStyles';
 
-import { AlertWindow } from '.';
+import { AlertWindow, LocateMobile } from '.';
 import Locate from './Locate';
 import Search from './Search';
 
@@ -100,6 +101,8 @@ export default function MapActive() {
     mapRef.current.setZoom(16);
   }, []);
 
+  const { isMobile } = useDeviceDetect();
+
   return (
     <>
       {loadError ? null : !isLoaded ? (
@@ -113,11 +116,14 @@ export default function MapActive() {
         />
       ) : (
         <>
-          <Box pos="absolute" top="48px" zIndex={10} w="100%" mW="300px">
+          <Box>
             <Search panTo={panTo} />
-            <Locate panTo={panTo} />
+            {!isMobile ? (
+              <Locate panTo={panTo} />
+            ) : (
+              <LocateMobile panTo={panTo} />
+            )}
           </Box>
-
           <Flex justifyContent="center">
             <GoogleMap
               id="map"
