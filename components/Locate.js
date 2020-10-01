@@ -1,3 +1,4 @@
+import React from 'react';
 function Locate({ panTo }) {
   return (
     <button
@@ -14,7 +15,7 @@ function Locate({ panTo }) {
         );
       }}
     >
-      <img src="/compass.svg" alt="compass" size="50px" />
+      <img src="/compass.svg" alt="compass" />
     </button>
   );
 }

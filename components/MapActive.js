@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback } from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import { useQuery, useMutation, queryCache } from 'react-query';
-import { Spinner, Flex } from '@chakra-ui/core';
+import { Spinner, Flex, Box } from '@chakra-ui/core';
 
 import mapStyles from '../styles/mapStyles';
 
@@ -112,11 +112,11 @@ export default function MapActive() {
           margin="150px auto 0"
         />
       ) : (
-        <Flex flexDirection="column" justifyContent="center">
-          <Flex justifyContent="center">
+        <>
+          <Box pos="absolute" top="48px" zIndex={10} w="100%" mW="300px">
             <Search panTo={panTo} />
             <Locate panTo={panTo} />
-          </Flex>
+          </Box>
 
           <Flex justifyContent="center">
             <GoogleMap
@@ -154,7 +154,7 @@ export default function MapActive() {
               )}
             </GoogleMap>
           </Flex>
-        </Flex>
+        </>
       )}
     </>
   );

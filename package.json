@@ -22,8 +22,10 @@
     "next": "9.5.3",
     "react": "16.13.1",
     "react-delay-render": "^0.1.2",
+    "react-device-detect": "^1.13.1",
     "react-dom": "16.13.1",
     "react-hook-form": "^6.8.6",
+    "react-icons": "^3.11.0",
     "react-query": "^2.23.0",
     "use-places-autocomplete": "^1.5.0"
   },

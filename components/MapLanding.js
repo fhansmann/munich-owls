@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import { useQuery } from 'react-query';
 import mapStyles from '../styles/mapStyles';
-import { Spinner } from '@chakra-ui/core';
+import { Spinner, Flex } from '@chakra-ui/core';
 
-import { AlertWindow, LandingModal } from '.';
+import { AlertWindow } from '.';
 
 const libraries = ['places'];
 const mapContainerStyle = {
@@ -39,7 +39,7 @@ export default function MapLanding() {
   const { data: sightings } = useQuery('sightings', fetchSightingsRequest);
 
   return (
-    <>
+    <Flex>
       {loadError ? null : !isLoaded ? (
         <Spinner
           thickness="6px"
@@ -80,9 +80,8 @@ export default function MapLanding() {
               />
             )}
           </GoogleMap>
-          <LandingModal />
         </>
       )}
-    </>
+    </Flex>
   );
 }

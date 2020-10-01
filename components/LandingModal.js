@@ -56,7 +56,7 @@ const LandingModal = () => {
                   textAlign="center"
                 >
                   <Heading size="sm" lineHeight="1.4" minW="380px">
-                    A vibrant community dedicated to improve the cycling and
+                    A community dedicated to improving the cycling and
                     scootering experience in Munich.
                   </Heading>
                 </Flex>
@@ -116,12 +116,12 @@ const LandingModal = () => {
               <Link href="/signin" passHref>
                 <Button
                   mr={3}
-                  backgroundColor="red.300"
+                  backgroundColor="teal.500"
                   color="white"
                   fontWeight="medium"
-                  _hover={{ bg: 'red.200' }}
+                  _hover={{ bg: 'teal.400' }}
                   _active={{
-                    bg: 'red.400',
+                    bg: 'teal.600',
                     transform: 'scale(0.95)'
                   }}
                 >
