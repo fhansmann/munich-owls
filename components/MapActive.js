@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, createContext } from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import { useQuery, useMutation, queryCache } from 'react-query';
 import { Spinner, Flex, Box } from '@chakra-ui/core';
@@ -6,9 +6,7 @@ import { Spinner, Flex, Box } from '@chakra-ui/core';
 import useDeviceDetect from '../utils/useDeviceDetect';
 import mapStyles from '../styles/mapStyles';
 
-import { AlertWindow, LocateMobile } from '.';
-import Locate from './Locate';
-import Search from './Search';
+import { AlertWindow, Locate, Search, LocateMobile, SearchMobile } from '.';
 
 const libraries = ['places'];
 const mapContainerStyle = {
@@ -116,13 +114,21 @@ export default function MapActive() {
         />
       ) : (
         <>
-          <Box>
-            <Search panTo={panTo} />
+          {/*           <Box>
             {!isMobile ? (
-              <Locate panTo={panTo} />
+              <>
+                <Search panTo={panTo} />
+                <Locate panTo={panTo} />
+              </>
             ) : (
-              <LocateMobile panTo={panTo} />
+              <>
+                <SearchMobile panTo={panTo} />
+                <LocateMobile panTo={panTo} />
+              </>
             )}
+          </Box> */}
+          <Box>
+            <Locate panTo={panTo} />
           </Box>
           <Flex justifyContent="center">
             <GoogleMap

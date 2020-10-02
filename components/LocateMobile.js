@@ -1,5 +1,5 @@
 import React from 'react';
-function Locate({ panTo }) {
+function LocateMobile({ panTo }) {
   return (
     <button
       className="locateMobile"
@@ -20,4 +20,4 @@ function Locate({ panTo }) {
   );
 }
 
-export default Locate;
+export default LocateMobile;

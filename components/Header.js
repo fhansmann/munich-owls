@@ -1,4 +1,6 @@
 import { Image, Link, Heading, Button, Flex } from '@chakra-ui/core';
+import { useContext } from 'react';
+import Search from './Search';
 
 const Header = ({ children }) => {
   return (
@@ -9,6 +11,9 @@ const Header = ({ children }) => {
           {' '}
           OWLS{' '}
         </Heading>
+      </Flex>
+      <Flex>
+        <Search />
       </Flex>
       <Flex>
         <Link href="/signin" style={{ textDecoration: 'none' }} passHref>
