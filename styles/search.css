@@ -4,27 +4,8 @@
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 260px;
+  max-width: 350px;
   z-index: 10;
-}
-
-.searchMobile {
-  position: absolute;
-  top: 11px;
-  left: 150px;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 240px;
-  z-index: 10;
-}
-
-.searchMobile input {
-  padding: 0.2rem;
-  font-size: 0.9rem;
-  width: 100%;
-  border: 3px solid #38b2ac;
-  border-radius: 5px;
-  background-color: #edf2f7;
 }
 
 .search input {
@@ -39,25 +20,13 @@
 .locate {
   position: absolute;
   right: 15px;
-  top: 65px;
+  top: 55px;
   background: none;
   border: none;
   z-index: 10;
 }
 
-.locateMobile {
-  position: absolute;
-  right: 15px;
-  top: 11px;
-  background: none;
-  border: none;
-  z-index: 10;
-}
 .locate img {
   width: 30px;
-  cursor: pointer;
-}
-.locateMobile img {
-  width: 32px;
   cursor: pointer;
 }

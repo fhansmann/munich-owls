@@ -1,57 +1,42 @@
-/* import { Image, Link, Heading, Button, Flex } from '@chakra-ui/core';
+import { Link, Button, Flex } from '@chakra-ui/core';
 
 const MobileFooter = () => {
   return (
+    <Flex justifyContent="center" alignItems="center" w="100vw" h="7vh">
+      <Link href="/signin" style={{ textDecoration: 'none' }} passHref>
+        <Button
+          size="sm"
+          mr={3}
+          backgroundColor="white"
+          variantColor="teal"
+          variant="outline"
+          fontWeight="medium"
+          _active={{
+            bg: 'gray.300',
+            transform: 'scale(0.95)'
+          }}
+        >
+          Sign in
+        </Button>
+      </Link>
+      <Link href="/about" style={{ textDecoration: 'none' }} passHref>
+        <Button
+          size="sm"
+          mr={3}
+          backgroundColor="white"
+          variantColor="teal"
+          variant="outline"
+          fontWeight="medium"
+          _active={{
+            bg: 'gray.300',
+            transform: 'scale(0.95)'
+          }}
+        >
+          About
+        </Button>
+      </Link>
+    </Flex>
+  );
+};
 
-<Flex>
-<Link
-  href="/"
-  className="flex items-center justify-center w-1/4 py-3"
->
-  {({ isActive }) =>
-    isActive ? (
-      <HomeIcon className="p-px text-blue-500 w-7 h-7" />
-    ) : (
-      <HomeIconEmpty className="p-px text-gray-500 w-7 h-7" />
-    )
-  }
-</Link>
-<Link
-  href="/explore"
-  className="flex items-center justify-center w-1/4 py-3 text-gray-500"
->
-  {({ isActive }) =>
-    isActive ? (
-      <SearchIcon className="p-px text-blue-500 w-7 h-7" />
-    ) : (
-      <SearchIconEmpty className="p-px text-gray-500 w-7 h-7" />
-    )
-  }
-</Link>
-<Link
-  href="/notifications"
-  className="flex items-center justify-center w-1/4 py-3 text-gray-500"
->
-  {({ isActive }) =>
-    isActive ? (
-      <BellIcon className="p-px text-blue-500 w-7 h-7" />
-    ) : (
-      <BellIconEmpty className="p-px text-gray-500 w-7 h-7" />
-    )
-  }
-</Link>
-<Link
-  href="/messages"
-  className="flex items-center justify-center w-1/4 py-3 text-gray-500"
->
-  {({ isActive }) =>
-    isActive ? (
-      <MailboxIcon className="p-px text-blue-500 w-7 h-7" />
-    ) : (
-      <MailboxIconEmpty className="p-px text-gray-500 w-7 h-7" />
-    )
-  }
-</Link>
-</footer>
-
-export default MobileFooter */
+export default MobileFooter;

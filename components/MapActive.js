@@ -1,16 +1,18 @@
 import { useState, useRef, useCallback, createContext } from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import { useQuery, useMutation, queryCache } from 'react-query';
-import { Spinner, Flex, Box } from '@chakra-ui/core';
+import { Spinner, Flex } from '@chakra-ui/core';
 
-import useDeviceDetect from '../utils/useDeviceDetect';
 import mapStyles from '../styles/mapStyles';
 
-import { AlertWindow, Locate, Search, LocateMobile, SearchMobile } from '.';
+import { AlertWindow, Locate } from '.';
+import Header from './Header';
+import MobileFooter from './MobileFooter';
+import useDeviceDetect from '../utils/useDeviceDetect';
 
 const libraries = ['places'];
 const mapContainerStyle = {
-  height: '100vh',
+  height: '93vh',
   width: '100vw'
 };
 const options = {
@@ -100,7 +102,6 @@ export default function MapActive() {
   }, []);
 
   const { isMobile } = useDeviceDetect();
-
   return (
     <>
       {loadError ? null : !isLoaded ? (
@@ -114,57 +115,50 @@ export default function MapActive() {
         />
       ) : (
         <>
-          {/*           <Box>
-            {!isMobile ? (
-              <>
-                <Search panTo={panTo} />
-                <Locate panTo={panTo} />
-              </>
-            ) : (
-              <>
-                <SearchMobile panTo={panTo} />
-                <LocateMobile panTo={panTo} />
-              </>
-            )}
-          </Box> */}
-          <Box>
-            <Locate panTo={panTo} />
-          </Box>
-          <Flex justifyContent="center">
-            <GoogleMap
-              id="map"
-              mapContainerStyle={mapContainerStyle}
-              zoom={zoom}
-              center={center}
-              options={options}
-              onClick={onMapClick}
-              onLoad={onMapLoad}
-            >
-              {Array.isArray(sightings) &&
-                sightings.map((sighting) => (
-                  <Marker
-                    key={sighting.id}
-                    position={{
-                      lat: sighting.latitude,
-                      lng: sighting.longitude
-                    }}
-                    onClick={() => setSelected(sighting)}
-                    icon={{
-                      url: `/owl.svg`,
-                      origin: new window.google.maps.Point(0, 0),
-                      anchor: new window.google.maps.Point(15, 15),
-                      scaledSize: new window.google.maps.Size(30, 30)
-                    }}
-                  />
-                ))}
+          <Locate panTo={panTo} />
+          <Flex flexDirection="column">
+            <Header panTo={panTo}></Header>
+            <Flex>
+              <GoogleMap
+                id="map"
+                mapContainerStyle={mapContainerStyle}
+                zoom={zoom}
+                center={center}
+                options={options}
+                onClick={onMapClick}
+                onLoad={onMapLoad}
+              >
+                {Array.isArray(sightings) &&
+                  sightings.map((sighting) => (
+                    <Marker
+                      key={sighting.id}
+                      position={{
+                        lat: sighting.latitude,
+                        lng: sighting.longitude
+                      }}
+                      onClick={() => setSelected(sighting)}
+                      icon={{
+                        url: `/owl.svg`,
+                        origin: new window.google.maps.Point(0, 0),
+                        anchor: new window.google.maps.Point(15, 15),
+                        scaledSize: new window.google.maps.Size(30, 30)
+                      }}
+                    />
+                  ))}
 
-              {selected && (
-                <AlertWindow
-                  selected={selected}
-                  close={() => setSelected(null)}
-                />
-              )}
-            </GoogleMap>
+                {selected && (
+                  <AlertWindow
+                    selected={selected}
+                    close={() => setSelected(null)}
+                  />
+                )}
+              </GoogleMap>
+            </Flex>
+            {isMobile ? (
+              <Flex>
+                <MobileFooter />
+              </Flex>
+            ) : null}
           </Flex>
         </>
       )}
