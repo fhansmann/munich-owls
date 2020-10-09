@@ -55,9 +55,9 @@ const LandingModal = () => {
                   maxW="350px"
                   textAlign="center"
                 >
-                  <Heading size="sm" lineHeight="1.4" minW="380px">
-                    A community dedicated to improving the cycling and
-                    scootering experience in Munich.
+                  <Heading size="sm" lineHeight="1.4" maxW="380px">
+                    A community dedicated to improve the individual transport
+                    experience in Munich.
                   </Heading>
                 </Flex>
               </Flex>
@@ -83,6 +83,7 @@ const LandingModal = () => {
             <ModalFooter>
               <Link href="/" passHref>
                 <Button
+                  size="sm"
                   mr={3}
                   backgroundColor="gray.400"
                   color="white"
@@ -99,6 +100,7 @@ const LandingModal = () => {
 
               <Link href="/about" passHref>
                 <Button
+                  size="sm"
                   mr={3}
                   backgroundColor="gray.400"
                   color="white"
@@ -115,6 +117,7 @@ const LandingModal = () => {
 
               <Link href="/signin" passHref>
                 <Button
+                  size="sm"
                   mr={3}
                   backgroundColor="teal.500"
                   color="white"

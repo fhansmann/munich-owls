@@ -9,7 +9,7 @@ const MobileFooter = () => {
           mr={3}
           backgroundColor="white"
           variantColor="teal"
-          variant="outline"
+          variant="ghost"
           fontWeight="medium"
           _active={{
             bg: 'gray.300',
@@ -25,7 +25,7 @@ const MobileFooter = () => {
           mr={3}
           backgroundColor="white"
           variantColor="teal"
-          variant="outline"
+          variant="ghost"
           fontWeight="medium"
           _active={{
             bg: 'gray.300',
