@@ -75,7 +75,6 @@ const LandingModal = () => {
                     <ListIcon icon="check-circle" color="green.500" />
                     Let your city planners know where they need to improve
                   </ListItem>
-                  {/* You can also use custom icons from react-icons */}
                 </List>
               </Flex>
             </ModalBody>
@@ -83,7 +82,7 @@ const LandingModal = () => {
             <ModalFooter>
               <Link href="/" passHref>
                 <Button
-                  size="sm"
+                  size="md"
                   mr={3}
                   backgroundColor="gray.400"
                   color="white"
@@ -100,7 +99,7 @@ const LandingModal = () => {
 
               <Link href="/about" passHref>
                 <Button
-                  size="sm"
+                  size="md"
                   mr={3}
                   backgroundColor="gray.400"
                   color="white"

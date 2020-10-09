@@ -19,6 +19,8 @@ function GlobalStyle({ children }) {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            maxW={{ xl: "1200px" }}
+            m="0 auto"
           }
         `}
       />

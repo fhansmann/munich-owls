@@ -4,6 +4,7 @@ import theme from '../styles/theme';
 import GlobalStyle from '../styles/GlobalStyle';
 import '@reach/combobox/styles.css';
 import '../styles/search.css';
+import '../styles/background.css';
 
 function MyApp({ Component, pageProps }) {
   return (
