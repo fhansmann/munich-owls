@@ -1,13 +1,12 @@
-import { useState, useRef, useCallback, createContext } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import { useQuery, useMutation, queryCache } from 'react-query';
 import { Spinner, Flex } from '@chakra-ui/core';
 
 import mapStyles from '../styles/mapStyles';
 
-import { AlertWindow, Locate } from '.';
-import Header from './Header';
-import MobileFooter from './MobileFooter';
+import { AlertWindow } from '.';
+
 import useDeviceDetect from '../utils/useDeviceDetect';
 
 const libraries = ['places'];
@@ -115,9 +114,7 @@ export default function MapActive() {
         />
       ) : (
         <>
-          <Locate panTo={panTo} />
           <Flex flexDirection="column">
-            <Header panTo={panTo}></Header>
             <Flex>
               <GoogleMap
                 id="map"
@@ -138,7 +135,7 @@ export default function MapActive() {
                       }}
                       onClick={() => setSelected(sighting)}
                       icon={{
-                        url: `/owl.svg`,
+                        url: `/marker.svg`,
                         origin: new window.google.maps.Point(0, 0),
                         anchor: new window.google.maps.Point(15, 15),
                         scaledSize: new window.google.maps.Size(30, 30)
@@ -154,11 +151,7 @@ export default function MapActive() {
                 )}
               </GoogleMap>
             </Flex>
-            {isMobile ? (
-              <Flex>
-                <MobileFooter />
-              </Flex>
-            ) : null}
+            {isMobile ? <Flex>null</Flex> : null}
           </Flex>
         </>
       )}

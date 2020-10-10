@@ -1,4 +1,4 @@
-import { Box, Text, Image, Flex } from '@chakra-ui/core';
+import { Box, Text, Flex } from '@chakra-ui/core';
 import Header from '../components/Header';
 
 const About = () => (

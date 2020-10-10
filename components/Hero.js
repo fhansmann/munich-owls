@@ -73,8 +73,8 @@ export default function Hero({ title, subtitle }) {
             </ListItems>
           </List>
         </Flex>
-        <Flex width={{ base: '300px', md: '500px' }} justify="center">
-          <Link href="/" passHref>
+        <Flex width={{ base: '300px', md: '500px' }} justify="start">
+          <Link href="/map" passHref>
             <Button
               size="md"
               mr={3}
@@ -112,8 +112,8 @@ export default function Hero({ title, subtitle }) {
       <Box w={{ base: '80%', sm: '60%', md: '50%' }} mb={{ base: 12, md: 0 }}>
         <Image
           size={{ base: '300px', md: '440px' }}
-          src="owls.svg"
-          alt="cyclist"
+          src="product.svg"
+          alt="map-example"
           objectFit="cover"
           rounded="1rem"
           shadow="2xl"
