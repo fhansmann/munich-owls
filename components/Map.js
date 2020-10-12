@@ -1,17 +1,18 @@
 import { useState, useRef, useCallback } from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import { useQuery, useMutation, queryCache } from 'react-query';
-import { Spinner, Flex } from '@chakra-ui/core';
+import { Spinner, Flex, Box } from '@chakra-ui/core';
 
 import mapStyles from '../styles/mapStyles';
-
 import { AlertWindow } from '.';
-
-import useDeviceDetect from '../utils/useDeviceDetect';
+import { useAuth } from '../lib/auth';
+import { withAuthModal } from './Auth';
+import Locate from './Locate';
+import Search from './Search';
 
 const libraries = ['places'];
 const mapContainerStyle = {
-  height: '93vh',
+  height: '90vh',
   width: '100vw'
 };
 const options = {
@@ -72,13 +73,13 @@ function useCreateSighting() {
   });
 }
 
-export default function MapActive() {
+export function Map() {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
     libraries
   });
   const [selected, setSelected] = useState(null);
-
+  const auth = useAuth();
   const { data: sightings } = useQuery('sightings', fetchSightingsRequest);
 
   const [createSighting] = useCreateSighting();
@@ -100,10 +101,9 @@ export default function MapActive() {
     mapRef.current.setZoom(16);
   }, []);
 
-  const { isMobile } = useDeviceDetect();
   return (
     <>
-      {loadError ? null : !isLoaded ? (
+      {!isLoaded ? (
         <Spinner
           thickness="6px"
           speed="0.4s"
@@ -113,48 +113,50 @@ export default function MapActive() {
           margin="150px auto 0"
         />
       ) : (
-        <>
-          <Flex flexDirection="column">
-            <Flex>
-              <GoogleMap
-                id="map"
-                mapContainerStyle={mapContainerStyle}
-                zoom={zoom}
-                center={center}
-                options={options}
-                onClick={onMapClick}
-                onLoad={onMapLoad}
-              >
-                {Array.isArray(sightings) &&
-                  sightings.map((sighting) => (
-                    <Marker
-                      key={sighting.id}
-                      position={{
-                        lat: sighting.latitude,
-                        lng: sighting.longitude
-                      }}
-                      onClick={() => setSelected(sighting)}
-                      icon={{
-                        url: `/marker.svg`,
-                        origin: new window.google.maps.Point(0, 0),
-                        anchor: new window.google.maps.Point(15, 15),
-                        scaledSize: new window.google.maps.Size(30, 30)
-                      }}
-                    />
-                  ))}
+        <GoogleMap
+          id="map"
+          mapContainerStyle={mapContainerStyle}
+          zoom={zoom}
+          center={center}
+          options={options}
+          onClick={onMapClick}
+          onLoad={onMapLoad}
+        >
+          {Array.isArray(sightings) &&
+            sightings.map((sighting) => (
+              <Marker
+                key={sighting.id}
+                position={{
+                  lat: sighting.latitude,
+                  lng: sighting.longitude
+                }}
+                onClick={() => setSelected(sighting)}
+                icon={{
+                  url: `/marker.svg`,
+                  origin: new window.google.maps.Point(0, 0),
+                  anchor: new window.google.maps.Point(15, 15),
+                  scaledSize: new window.google.maps.Size(30, 30)
+                }}
+              />
+            ))}
 
-                {selected && (
-                  <AlertWindow
-                    selected={selected}
-                    close={() => setSelected(null)}
-                  />
-                )}
-              </GoogleMap>
-            </Flex>
-            {isMobile ? <Flex>null</Flex> : null}
-          </Flex>
-        </>
+          {selected && (
+            <AlertWindow selected={selected} close={() => setSelected(null)} />
+          )}
+
+          {auth.user && (
+            <Box mt={4}>
+              <Flex align="center" justify="center">
+                <Search panTo={panTo} />
+                <Locate panTo={panTo} />
+                <div>{console.log(auth.user)}</div>
+              </Flex>
+            </Box>
+          )}
+        </GoogleMap>
       )}
     </>
   );
 }
+
+export default withAuthModal(Map);

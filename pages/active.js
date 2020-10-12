@@ -1,10 +1,10 @@
-import React from 'react';
 import Map from '../components/Map';
-//import useDeviceDetect from '../utils/useDeviceDetect';
+import Header from '../components/Header';
 
 const Active = () => {
   return (
     <>
+      <Header />
       <Map />
     </>
   );

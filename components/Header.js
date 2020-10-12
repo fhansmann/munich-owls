@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Box, Heading, Flex, Button, Image, Text } from '@chakra-ui/core';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { MdClose } from 'react-icons/md';
+import { useAuth } from '../lib/auth';
 
 const MenuItems = (props) => {
   const { children, href } = props;
@@ -16,6 +17,7 @@ const MenuItems = (props) => {
 const Header = () => {
   const [show, setShow] = useState(false);
   const handleToggle = () => setShow(!show);
+  const auth = useAuth();
 
   return (
     <Flex
@@ -24,7 +26,6 @@ const Header = () => {
       justify="space-between"
       wrap="wrap"
       w="100%"
-      mb={8}
       py={4}
       px={8}
       bg={['gray.200', 'gray.200', 'transparent', 'transparent']}
@@ -60,11 +61,19 @@ const Header = () => {
           <MenuItems href="/"> Home </MenuItems>
           <MenuItems href="/about"> About </MenuItems>
           <MenuItems href="/map"> Show Map </MenuItems>
-          <Link href="/signin" passHref>
-            <Button bg="transparent" border="1px solid black" color="black">
-              Sign in
-            </Button>
-          </Link>
+          {!auth.user ? (
+            <Link href="/signin" passHref>
+              <Button bg="transparent" border="1px solid black" color="black">
+                Sign in
+              </Button>
+            </Link>
+          ) : (
+            <Link href="/" passHref>
+              <Button bg="transparent" border="1px solid black" color="black">
+                Sign out
+              </Button>
+            </Link>
+          )}
         </Flex>
       </Box>
     </Flex>
