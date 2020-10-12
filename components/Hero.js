@@ -12,6 +12,7 @@ import {
   Image,
   Text
 } from '@chakra-ui/core';
+import { useAuth } from '../lib/auth';
 
 const ListItems = ({ children }) => {
   return (
@@ -23,6 +24,7 @@ const ListItems = ({ children }) => {
 };
 
 export default function Hero({ title, subtitle }) {
+  const auth = useAuth();
   return (
     <Flex
       align="center"
@@ -90,33 +92,34 @@ export default function Hero({ title, subtitle }) {
               Show me the owls!
             </Button>
           </Link>
-          <Link href="/signin" passHref>
-            <Button
-              size="md"
-              mr={3}
-              backgroundColor="teal.500"
-              color="white"
-              fontWeight="medium"
-              _hover={{ bg: 'teal.400' }}
-              _active={{
-                bg: 'teal.600',
-                transform: 'scale(0.95)'
-              }}
-            >
-              Sign in
-            </Button>
-          </Link>
+          {!auth?.user ? (
+            <Link href="/signin" passHref>
+              <Button
+                size="md"
+                mr={3}
+                backgroundColor="teal.500"
+                color="white"
+                fontWeight="medium"
+                _hover={{ bg: 'teal.400' }}
+                _active={{
+                  bg: 'teal.600',
+                  transform: 'scale(0.95)'
+                }}
+              >
+                Sign in
+              </Button>
+            </Link>
+          ) : null}
         </Flex>
       </Stack>
 
       <Box w={{ base: '80%', sm: '60%', md: '50%' }} mb={{ base: 12, md: 0 }}>
         <Image
           size={{ base: '300px', md: '440px' }}
-          src="product.svg"
+          src="landing.svg"
           alt="map-example"
           objectFit="cover"
-          rounded="1rem"
-          shadow="2xl"
+          bg="transparent"
           width={{ base: '300px', md: '500px' }}
         />
       </Box>

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import {
-  Box,
+  Icon,
   Button,
   Flex,
   FormControl,
@@ -14,62 +14,113 @@ import {
   ModalContent,
   ModalOverlay,
   Stack,
-  useColorMode,
   useDisclosure,
-  useToast
+  useToast,
+  Checkbox
 } from '@chakra-ui/core';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 
 import { useAuth } from '../lib/auth';
+import { Text } from '@chakra-ui/core';
+import { Link } from '@chakra-ui/core';
 
-const AuthContent = ({ register, errors, type, ...rest }) => (
-  <Stack {...rest}>
-    <FormControl isInvalid={errors.email && errors.email.message}>
-      <FormLabel>Email Address</FormLabel>
-      <Input
-        autoFocus
-        aria-label="Email Address"
-        name="email"
-        ref={register({
-          required: 'Please enter your email.'
-        })}
-        placeholder="tim@hello.com"
-      />
-      <FormErrorMessage>
-        {errors.email && errors.email.message}
-      </FormErrorMessage>
-    </FormControl>
-    <FormControl isInvalid={errors.pass && errors.pass.message}>
-      <FormLabel>Password</FormLabel>
-      <Input
-        aria-label="Password"
-        name="pass"
-        type="password"
-        ref={register({
-          required: 'Please enter a password.'
-        })}
-      />
-      <FormErrorMessage>{errors.pass && errors.pass.message}</FormErrorMessage>
-    </FormControl>
-    <Button type="submit" mt={4} variantColor="teal" variant="solid">
-      {type}
-    </Button>
-  </Stack>
-);
+const AuthContent = ({ register, errors, type, ...rest }) => {
+  const auth = useAuth();
+  return (
+    <Stack {...rest}>
+      <FormControl isInvalid={errors.email && errors.email.message}>
+        <FormLabel>Email Address</FormLabel>
+        <Input
+          autoFocus
+          aria-label="Email Address"
+          name="email"
+          ref={register({
+            required: 'Please enter your email.'
+          })}
+          placeholder="tim@owls.com"
+        />
+        <FormErrorMessage>
+          {errors.email && errors.email.message}
+        </FormErrorMessage>
+      </FormControl>
+      <FormControl isInvalid={errors.pass && errors.pass.message}>
+        <FormLabel>Password</FormLabel>
+        <Input
+          aria-label="Password"
+          name="pass"
+          type="password"
+          ref={register({
+            required: 'Please enter a password.'
+          })}
+        />
+        <FormErrorMessage>
+          {errors.pass && errors.pass.message}
+        </FormErrorMessage>
+      </FormControl>
+
+      <Text fontSize="sm">
+        Need an account? <Icon name="arrow-forward" size="16px" />
+        <Link href="signup"> Sign up </Link>
+      </Text>
+      <Text fontSize="sm">
+        <Link href="signup"> Reset Password </Link>
+      </Text>
+      <Checkbox size="sm" variantColor="teal" defaultIsChecked>
+        <Link href="impressum"> View & accept privacy and cookies policy </Link>
+      </Checkbox>
+
+      <Button type="submit" mt={4} variantColor="teal" variant="solid">
+        {type}
+      </Button>
+
+      <Button
+        onClick={() => auth.signinWithGoogle('/map')}
+        backgroundColor="white"
+        color="gray.900"
+        variant="outline"
+        fontWeight="medium"
+        leftIcon="google"
+        mt={2}
+        h="50px"
+        _hover={{ bg: 'gray.100' }}
+        _active={{
+          bg: 'gray.100',
+          transform: 'scale(0.95)'
+        }}
+      >
+        Continue with Google
+      </Button>
+
+      <Button
+        onClick={() => auth.signinWithTwitter('/map')}
+        backgroundColor="white"
+        color="gray.900"
+        variant="outline"
+        fontWeight="medium"
+        leftIcon="twitter"
+        mt={2}
+        h="50px"
+        _hover={{ bg: 'gray.100' }}
+        _active={{
+          bg: 'gray.100',
+          transform: 'scale(0.95)'
+        }}
+      >
+        Continue with Twitter
+      </Button>
+    </Stack>
+  );
+};
 
 const FullScreenAuth = ({ type, onSubmit }) => {
-  const { colorMode } = useColorMode();
   const { handleSubmit, register, errors } = useForm();
 
   return (
     <Flex align="center" justify="center" h="100vh">
       <AuthContent
         as="form"
-        backgroundColor={[
-          'none',
-          colorMode === 'light' ? 'gray.100' : 'gray.900'
-        ]}
+        backgroundColor={['none']}
         borderRadius={8}
         errors={errors}
         maxWidth="400px"
@@ -165,7 +216,7 @@ export const withSignInRedirect = (Component) => (props) => {
     auth
       .signin(email, pass)
       .then(() => {
-        router.push('/deals');
+        router.push('/active');
       })
       .catch((error) => {
         toast({

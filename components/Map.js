@@ -6,7 +6,7 @@ import { Spinner, Flex, Box } from '@chakra-ui/core';
 import mapStyles from '../styles/mapStyles';
 import { AlertWindow } from '.';
 import { useAuth } from '../lib/auth';
-import { withAuthModal } from './Auth';
+import { withSignInRedirect } from './Auth';
 import Locate from './Locate';
 import Search from './Search';
 
@@ -73,7 +73,7 @@ function useCreateSighting() {
   });
 }
 
-export function Map() {
+export function Map({ onSignIn }) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
     libraries
@@ -85,7 +85,11 @@ export function Map() {
   const [createSighting] = useCreateSighting();
 
   const onMapClick = useCallback((e) => {
-    createSighting({
+    if (!auth.user) {
+      return onSignIn();
+    }
+
+    return createSighting({
       latitude: e.latLng.lat(),
       longitude: e.latLng.lng()
     });
@@ -159,4 +163,4 @@ export function Map() {
   );
 }
 
-export default withAuthModal(Map);
+export default withSignInRedirect(Map);

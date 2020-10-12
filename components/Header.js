@@ -4,6 +4,7 @@ import { Box, Heading, Flex, Button, Image, Text } from '@chakra-ui/core';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { MdClose } from 'react-icons/md';
 import { useAuth } from '../lib/auth';
+import { useRouter } from 'next/router';
 
 const MenuItems = (props) => {
   const { children, href } = props;
@@ -18,6 +19,12 @@ const Header = () => {
   const [show, setShow] = useState(false);
   const handleToggle = () => setShow(!show);
   const auth = useAuth();
+  const router = useRouter();
+
+  const onFullSignOut = (e) => {
+    auth.signout();
+    router.push('/');
+  };
 
   return (
     <Flex
@@ -61,18 +68,21 @@ const Header = () => {
           <MenuItems href="/"> Home </MenuItems>
           <MenuItems href="/about"> About </MenuItems>
           <MenuItems href="/map"> Show Map </MenuItems>
-          {!auth.user ? (
+          {!auth?.user ? (
             <Link href="/signin" passHref>
               <Button bg="transparent" border="1px solid black" color="black">
                 Sign in
               </Button>
             </Link>
           ) : (
-            <Link href="/" passHref>
-              <Button bg="transparent" border="1px solid black" color="black">
-                Sign out
-              </Button>
-            </Link>
+            <Button
+              bg="transparent"
+              border="1px solid black"
+              color="black"
+              onClick={onFullSignOut}
+            >
+              Sign out
+            </Button>
           )}
         </Flex>
       </Box>
