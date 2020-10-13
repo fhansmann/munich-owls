@@ -17,7 +17,7 @@ import { useAuth } from '../lib/auth';
 const ListItems = ({ children }) => {
   return (
     <ListItem mb={3} fontSize="md">
-      <ListIcon icon="check-circle" color="gray.500" />
+      <ListIcon icon="check-circle" color="red.400" />
       {children}
     </ListItem>
   );
@@ -97,12 +97,12 @@ export default function Hero({ title, subtitle }) {
               <Button
                 size="md"
                 mr={3}
-                backgroundColor="teal.500"
+                backgroundColor="red.400"
                 color="white"
                 fontWeight="medium"
-                _hover={{ bg: 'teal.400' }}
+                _hover={{ bg: 'red.300' }}
                 _active={{
-                  bg: 'teal.600',
+                  bg: 'red.400',
                   transform: 'scale(0.95)'
                 }}
               >
@@ -120,7 +120,7 @@ export default function Hero({ title, subtitle }) {
           alt="map-example"
           objectFit="cover"
           bg="transparent"
-          width={{ base: '300px', md: '500px' }}
+          width={{ base: '300px', md: '600px' }}
         />
       </Box>
     </Flex>

@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 import { useToast } from '@chakra-ui/core';
 import { useAuth } from '../lib/auth';
-import Auth from '../components/Auth';
+import Auth from '../components/AuthSignUp';
 import { useRouter } from 'next/router';
 
 export default () => {
@@ -34,5 +34,9 @@ export default () => {
       });
   };
 
-  return <Auth type="Sign Up" onSubmit={signUp} />;
+  return (
+    <div className="background">
+      <Auth type="Sign Up" onSubmit={signUp} />;
+    </div>
+  );
 };

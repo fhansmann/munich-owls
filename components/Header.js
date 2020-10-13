@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import { Box, Heading, Flex, Button, Image, Text } from '@chakra-ui/core';
+import {
+  Box,
+  Heading,
+  Flex,
+  Button,
+  Image,
+  Text,
+} from '@chakra-ui/core';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { MdClose } from 'react-icons/md';
 import { useAuth } from '../lib/auth';

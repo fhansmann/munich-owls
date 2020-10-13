@@ -27,6 +27,7 @@ import { Link } from '@chakra-ui/core';
 
 const AuthContent = ({ register, errors, type, ...rest }) => {
   const auth = useAuth();
+
   return (
     <Stack {...rest}>
       <FormControl isInvalid={errors.email && errors.email.message}>
@@ -63,6 +64,7 @@ const AuthContent = ({ register, errors, type, ...rest }) => {
         Need an account? <Icon name="arrow-forward" size="16px" />
         <Link href="signup"> Sign up </Link>
       </Text>
+
       <Text fontSize="sm">
         <Link href="signup"> Reset Password </Link>
       </Text>
@@ -132,6 +134,7 @@ const FullScreenAuth = ({ type, onSubmit }) => {
         spacing={3}
         type={type}
         w="100%"
+        bg="gray.200"
       />
     </Flex>
   );

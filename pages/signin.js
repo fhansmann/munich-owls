@@ -27,5 +27,9 @@ export default () => {
       });
   };
 
-  return <Auth type="Sign In" onSubmit={signIn} />;
+  return (
+    <div className="background">
+      <Auth type="Sign In" onSubmit={signIn} />;
+    </div>
+  );
 };
