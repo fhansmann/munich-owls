@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import {
-  Checkbox,
+  Icon,
   Button,
   Flex,
   FormControl,
@@ -67,14 +67,13 @@ const FullScreenAuth = ({ type, onSubmit }) => {
         </FormControl>
 
         <Text fontSize="sm">
+          Need an account? <Icon name="arrow-forward" size="16px" />
+          <Link href="signup"> Sign up </Link>
+        </Text>
+
+        <Text fontSize="sm">
           <Link href="/"> Reset Password </Link>
         </Text>
-        <Checkbox size="sm" variantColor="teal" defaultIsChecked>
-          <Link href="impressum">
-            {' '}
-            View & accept privacy and cookies policy{' '}
-          </Link>
-        </Checkbox>
 
         <Button type="submit" mt={4} variantColor="teal" variant="solid">
           {type}

@@ -31,7 +31,7 @@ export default function Hero({ title, subtitle }) {
       justify={{
         base: 'center',
         md: 'space-between',
-        xl: 'space-between'
+        xl: 'space-around'
       }}
       direction={{ base: 'column-reverse', md: 'row' }}
       wrap="no-wrap"
@@ -80,10 +80,10 @@ export default function Hero({ title, subtitle }) {
             <Button
               size="md"
               mr={3}
-              backgroundColor="gray.200"
+              backgroundColor="gray.300"
               color="black"
               fontWeight="medium"
-              _hover={{ bg: 'gray.100' }}
+              _hover={{ bg: 'gray.200' }}
               _active={{
                 bg: 'gray.200',
                 transform: 'scale(0.95)'

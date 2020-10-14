@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 import { useToast } from '@chakra-ui/core';
 import { useAuth } from '../lib/auth';
-import Auth from '../components/AuthSignUp';
+import FullScreenAuth from '../components/AuthSignUp';
 import { useRouter } from 'next/router';
 
 export default () => {
@@ -21,7 +21,7 @@ export default () => {
           duration: 3000,
           isClosable: true
         });
-        router.push('/active');
+        router.push('/map');
       })
       .catch((error) => {
         toast({
@@ -36,7 +36,7 @@ export default () => {
 
   return (
     <div className="background">
-      <Auth type="Sign Up" onSubmit={signUp} />;
+      <FullScreenAuth type="Sign Up" onSubmit={signUp} />;
     </div>
   );
 };

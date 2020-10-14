@@ -219,7 +219,7 @@ export const withSignInRedirect = (Component) => (props) => {
     auth
       .signin(email, pass)
       .then(() => {
-        router.push('/active');
+        router.push('/map');
       })
       .catch((error) => {
         toast({

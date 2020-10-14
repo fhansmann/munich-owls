@@ -4,7 +4,7 @@ import Header from '../components/Header';
 
 const About = () => {
   return (
-    <div className="background">
+    <div className="background-full">
       <Header />
       <Flex direction="column" align="center" w="100%">
         {Questions.map((item) => (
@@ -14,8 +14,7 @@ const About = () => {
             p={5}
             mt={4}
             shadow="lg"
-            border="2px solid gray"
-            bg="gray.200"
+            bg="#E5E5E5"
           >
             <Heading fontSize="sm">{item.question}</Heading>
             <Text fontSize="sm" mt={4}>

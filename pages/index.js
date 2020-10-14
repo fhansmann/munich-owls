@@ -5,17 +5,6 @@ import Hero from '../components/Hero';
 const Home = () => {
   return (
     <div className="background">
-      <Head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-          if (document.cookie && document.cookie.includes('munich-owls')) {
-            window.location.href = "/map"
-          }
-        `
-          }}
-        />
-      </Head>
       <Header />
       <Hero />
     </div>

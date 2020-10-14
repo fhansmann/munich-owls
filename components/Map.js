@@ -2,17 +2,17 @@ import { useState, useRef, useCallback } from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import { useQuery, useMutation, queryCache } from 'react-query';
 import { Spinner, Flex, Box } from '@chakra-ui/core';
+import router from 'next/router';
 
 import mapStyles from '../styles/mapStyles';
 import { AlertWindow } from '.';
 import { useAuth } from '../lib/auth';
-import { withSignInRedirect } from './Auth';
 import Locate from './Locate';
 import Search from './Search';
 
 const libraries = ['places'];
 const mapContainerStyle = {
-  height: '90vh',
+  height: '87vh',
   width: '100vw'
 };
 const options = {
@@ -86,7 +86,7 @@ export function Map({ onSignIn }) {
 
   const onMapClick = useCallback((e) => {
     if (!auth.user) {
-      return onSignIn();
+      return router.push('/signin');
     }
 
     return createSighting({
@@ -163,4 +163,4 @@ export function Map({ onSignIn }) {
   );
 }
 
-export default withSignInRedirect(Map);
+export default Map;

@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { useToast } from '@chakra-ui/core';
-import { useAuth } from '../lib/auth';
-import Auth from '../components/Auth';
 import { useRouter } from 'next/router';
+import { useAuth } from '../lib/auth';
+import FullScreenAuth from '../components/AuthSignIn';
 
 export default () => {
   const auth = useAuth();
@@ -14,7 +14,7 @@ export default () => {
     auth
       .signin(email, pass)
       .then(() => {
-        router.push('/active');
+        router.push('/map');
       })
       .catch((error) => {
         toast({
@@ -29,7 +29,7 @@ export default () => {
 
   return (
     <div className="background">
-      <Auth type="Sign In" onSubmit={signIn} />;
+      <FullScreenAuth type="Sign In" onSubmit={signIn} />;
     </div>
   );
 };
