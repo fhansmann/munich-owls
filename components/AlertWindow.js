@@ -8,11 +8,11 @@ export default function AlertWindow({ selected, close }) {
       onCloseClick={() => close()}
     >
       <div>
-        <h2>Alert</h2>
+        <h2>Owl Alert</h2>
         <p>
-          {' '}
           Spotted {formatRelative(parseISO(selected.createdAt), new Date())}
         </p>
+        <p>Details: {selected.description}</p>
       </div>
     </InfoWindow>
   );

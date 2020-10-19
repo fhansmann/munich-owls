@@ -5,21 +5,19 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
-  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalOverlay,
   Stack,
-  useDisclosure,
-  useToast
+  Button,
+  Textarea,
+  FormHelperText
 } from '@chakra-ui/core';
 import { useForm } from 'react-hook-form';
-import { useAuth } from '../lib/auth';
 
-const Modal = ({ isOpen, onClose, register, errors, type }) => {
-  const auth = useAuth();
+const InputModal = ({ isOpen, onClose, onSubmit }) => {
   const { handleSubmit, register, errors } = useForm();
 
   return (
@@ -32,31 +30,35 @@ const Modal = ({ isOpen, onClose, register, errors, type }) => {
             <Stack
               as="form"
               errors={errors}
-              onSubmit={handleSubmit((data) => onSubmit(data))}
+              onSubmit={handleSubmit(onSubmit)}
               px={8}
               py={12}
               register={register}
               spacing={3}
-              type={type}
               w="100%"
             >
               <FormControl isInvalid={errors.input && errors.input.message}>
-                <FormLabel>
-                  Please provide details (max. 150 characters):
-                </FormLabel>
-                <Input
+                <FormLabel htmlFor="input">Please provide details:</FormLabel>
+                <Textarea
                   autoFocus
                   aria-label="Input"
                   name="input"
                   ref={register({
-                    required: 'Please enter details'
+                    required: 'Please enter details',
+                    maxLength: 150
                   })}
-                  placeholder="Large pothole at the intersection of street and cyling path - watch out!"
+                  placeholder="Example: Large pothole in the middle of the cyling path - watch out!"
                 />
+                <FormHelperText id="email-helper-text">
+                  Max. 150 characters | Please use English
+                </FormHelperText>
                 <FormErrorMessage>
                   {errors.input && errors.input.message}
                 </FormErrorMessage>
               </FormControl>
+              <Button type="submit" mt={4} variantColor="teal" variant="solid">
+                Submit
+              </Button>
             </Stack>
           </Flex>
         </ModalBody>
@@ -65,45 +67,4 @@ const Modal = ({ isOpen, onClose, register, errors, type }) => {
   );
 };
 
-export const withAuthModal = (Component) => (props) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const auth = useAuth();
-  const toast = useToast();
-
-  const signUp = ({ email, pass }) => {
-    auth
-      .signup(email, pass)
-      .then(() => {
-        toast({
-          title: 'Success! 🍻',
-          description: 'Your account has been created.',
-          status: 'success',
-          duration: 3000,
-          isClosable: true
-        });
-        onClose();
-      })
-      .catch((error) => {
-        toast({
-          title: 'An error occurred.',
-          description: error.message,
-          status: 'error',
-          duration: 9000,
-          isClosable: true
-        });
-      });
-  };
-  return (
-    <>
-      <AuthModal
-        isOpen={isOpen}
-        onClose={onClose}
-        type="Sign Up"
-        onSubmit={signUp}
-      />
-      <Component openAuthModal={onOpen} {...props} />
-    </>
-  );
-};
-
-export default withAuthModal;
+export default InputModal;

@@ -1,26 +1,27 @@
-import { NextApiRequest, NextApiResponse } from "next"
-import { PrismaClient } from "@prisma/client"
+import { NextApiRequest, NextApiResponse } from 'next';
+import { PrismaClient } from '@prisma/client';
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
-  const prisma = new PrismaClient()
+  const prisma = new PrismaClient();
 
   try {
-    const { sighting: sightingData } = req.body
+    const { sighting: sightingData } = req.body;
     const sighting = await prisma.owls.create({
       data: {
         latitude: sightingData.latitude,
-        longitude: sightingData.longitude
+        longitude: sightingData.longitude,
+        description: sightingData.description
       }
-    })
+    });
 
-    res.status(201)
-    res.json({ sighting })
+    res.status(201);
+    res.json({ sighting });
   } catch (e) {
-    console.error(e)
+    console.error(e);
 
-    res.status(500)
-    res.json({ error: "Sorry unable to save sighting to database" })
+    res.status(500);
+    res.json({ error: 'Sorry unable to save sighting to database' });
   } finally {
-    await prisma.disconnect()
+    await prisma.disconnect();
   }
 }

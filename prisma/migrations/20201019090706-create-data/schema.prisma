@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -11,9 +11,8 @@ generator client {
 }
 
 model Owls {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  latitude    Float
-  longitude   Float
-  description String
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  latitude  Float
+  longitude Float
 }
