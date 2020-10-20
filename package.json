@@ -27,7 +27,8 @@
     "react-icons": "^3.11.0",
     "react-query": "^2.23.0",
     "react-router-dom": "^5.2.0",
-    "use-places-autocomplete": "^1.5.0"
+    "use-places-autocomplete": "^1.5.0",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "@prisma/cli": "^2.7.1",
