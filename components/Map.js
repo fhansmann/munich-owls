@@ -7,7 +7,7 @@ import router from 'next/router';
 import mapStyles from '../styles/mapStyles';
 import { AlertWindow } from '.';
 import { useAuth } from '../lib/auth';
-import Locate from './index';
+import Locate from './Locate';
 import Search from './Search';
 import InputModal from './Modal';
 
