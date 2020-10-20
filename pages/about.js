@@ -14,7 +14,7 @@ const About = () => {
             p={5}
             mt={4}
             shadow="lg"
-            bg="#E5E5E5"
+            bg="gray.100"
           >
             <Heading fontSize="sm">{item.question}</Heading>
             <Text fontSize="sm" mt={4}>
