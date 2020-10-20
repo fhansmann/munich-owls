@@ -1,8 +1,9 @@
-import React from 'react';
+import { Box, Image, Button } from '@chakra-ui/core';
+
 function Locate({ panTo }) {
   return (
-    <button
-      className="locate"
+    <Button
+      bg="transparent"
       onClick={() => {
         navigator.geolocation.getCurrentPosition(
           (position) => {
@@ -15,8 +16,10 @@ function Locate({ panTo }) {
         );
       }}
     >
-      <img src="/compass.svg" alt="compass" />
-    </button>
+      <Box bg="transparent">
+        <Image size="30px" src="/compass.svg" alt="compass" />
+      </Box>
+    </Button>
   );
 }
 

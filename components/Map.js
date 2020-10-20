@@ -1,19 +1,19 @@
 import { useState, useRef, useCallback } from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import { useQuery, useMutation, queryCache } from 'react-query';
-import { Spinner, Flex, Box, useDisclosure, Button } from '@chakra-ui/core';
+import { Spinner, Flex, Box, useDisclosure } from '@chakra-ui/core';
 import router from 'next/router';
 
 import mapStyles from '../styles/mapStyles';
 import { AlertWindow } from '.';
 import { useAuth } from '../lib/auth';
-import Locate from './Locate';
+import Locate from './index';
 import Search from './Search';
 import InputModal from './Modal';
 
 const libraries = ['places'];
 const mapContainerStyle = {
-  height: '87vh',
+  height: '86vh',
   width: '100vw'
 };
 const options = {
@@ -75,7 +75,7 @@ function useCreateSighting() {
 }
 
 export function Map() {
-  const { isLoaded, loadError } = useLoadScript({
+  const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
     libraries
   });
