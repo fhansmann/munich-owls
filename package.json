@@ -20,6 +20,7 @@
     "firebase-admin": "^9.2.0",
     "js-cookie": "^2.2.1",
     "next": "9.5.3",
+    "next-seo": "^4.14.0",
     "react": "16.13.1",
     "react-delay-render": "^0.1.2",
     "react-dom": "16.13.1",
