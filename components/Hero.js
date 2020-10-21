@@ -23,7 +23,7 @@ const ListItems = ({ children }) => {
   );
 };
 
-export default function Hero({ title, subtitle }) {
+export default function Hero() {
   const auth = useAuth();
   return (
     <Flex
@@ -51,7 +51,7 @@ export default function Hero({ title, subtitle }) {
           fontWeight="bold"
           textAlign={['center', 'center', 'left', 'left']}
         >
-          {title}
+          Welcome to Munich Owls!
         </Heading>
         <Heading
           as="h2"
@@ -61,7 +61,8 @@ export default function Hero({ title, subtitle }) {
           lineHeight={1.5}
           textAlign={['center', 'center', 'left', 'left']}
         >
-          {subtitle}
+          We are a community dedicated to improve the individual transport
+          experience in Munich.
         </Heading>
 
         <Flex>
@@ -126,14 +127,3 @@ export default function Hero({ title, subtitle }) {
     </Flex>
   );
 }
-
-Hero.propTypes = {
-  title: PropTypes.string,
-  subtitle: PropTypes.string
-};
-
-Hero.defaultProps = {
-  title: 'Welcome to Munich Owls!',
-  subtitle:
-    'We are a community dedicated to improve the individual transport experience in Munich.'
-};
