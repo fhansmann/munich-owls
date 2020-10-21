@@ -1,30 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Munich Owls
 
-## Getting Started
+<img src="./public/marker.svg" alt="owls marker" align="right" width="80" />
 
-First, run the development server:
+Welcome to the repository for Munich Owls.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Munich Owls is a community project to create awareness for dangerous potholes and other obstacles on the streets with the primary goal to prevent accidents of any kind.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Our goal is build a community that cares about the safety of other traffic participants (e.g. cyclists, scooter riders, etc.) by providing real-time information on the state of local pathways.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+This is also the my first independent web app of my portfolio. You can visit my portfolio website [here](https://www.florians.dev)
 
-## Learn More
+### Getting Started
 
-To learn more about Next.js, take a look at the following resources:
+These instructions will get you a copy of the project up and running on your local machine for development purposes.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Installing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+After cloning this to your machine, you need to install node_modules through the a package manager (npm or yarn). You will also need environment variables for Firebase and Postgress.
 
-## Deploy on Vercel
+### Technologies & Frameworks Applied
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- React js / Next js for the Business Logic
+- CSS & Chakra UI for Styling
+- Firebase for Authentication
+- Postgress (via Heroku) & Prisma for the Backend
+- Checkly for Testing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Thanks for Stopping By!
