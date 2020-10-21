@@ -45,7 +45,7 @@ export default function Hero() {
         align={['center', 'center', 'flex-start', 'flex-start']}
       >
         <Heading
-          as="title"
+          as="h1"
           fontSize={['md', 'md', 'lg', 'xl']}
           color="black"
           fontWeight="bold"
