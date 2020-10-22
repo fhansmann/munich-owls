@@ -115,6 +115,13 @@
       "field": "longitude",
       "type": "Float",
       "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Owls",
+      "field": "description",
+      "type": "String",
+      "arity": "Required"
     }
   ]
 }

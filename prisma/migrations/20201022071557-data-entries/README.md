@@ -1,6 +1,6 @@
-# Migration `20200922113652-owls`
+# Migration `20201022071557-data-entries`
 
-This migration has been generated at 9/22/2020, 1:36:52 PM.
+This migration has been generated at 10/22/2020, 9:15:57 AM.
 You can check out the [state of the schema](./schema.prisma) after the migration.
 
 ## Database Steps
@@ -11,6 +11,7 @@ CREATE TABLE "public"."Owls" (
 "createdAt" timestamp(3)   NOT NULL DEFAULT CURRENT_TIMESTAMP,
 "latitude" Decimal(65,30)   NOT NULL ,
 "longitude" Decimal(65,30)   NOT NULL ,
+"description" text   NOT NULL ,
 PRIMARY KEY ("id")
 )
 ```
@@ -19,10 +20,10 @@ PRIMARY KEY ("id")
 
 ```diff
 diff --git schema.prisma schema.prisma
-migration ..20200922113652-owls
+migration ..20201022071557-data-entries
 --- datamodel.dml
 +++ datamodel.dml
-@@ -1,0 +1,18 @@
+@@ -1,0 +1,19 @@
 +// This is your Prisma schema file,
 +// learn more about it in the docs: https://pris.ly/d/prisma-schema
 +
@@ -36,10 +37,11 @@ migration ..20200922113652-owls
 +}
 +
 +model Owls {
-+  id        Int      @id @default(autoincrement())
-+  createdAt DateTime @default(now())
-+  latitude  Float
-+  longitude Float
++  id          Int      @id @default(autoincrement())
++  createdAt   DateTime @default(now())
++  latitude    Float
++  longitude   Float
++  description String
 +}
 ```
 
