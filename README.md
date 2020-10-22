@@ -25,5 +25,3 @@ After cloning this to your machine, you need to install node_modules through the
 - Firebase for Authentication
 - Postgress (via Heroku) & Prisma for the Backend
 - Checkly for Testing
-
-### Thanks for Stopping By!
